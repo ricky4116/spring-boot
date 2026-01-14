@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class ItemController {
     @GetMapping("/list")
     String list(Model model){
-        model.addAttribute("name","비싼바지");
+        model.addAttribute("name","비싼 바지");
         return "list.html";
     }
 }
