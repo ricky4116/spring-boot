@@ -43,6 +43,12 @@ public class ItemController {
         return "redirect:/list";
     }
 
+    @PostMapping("/editdata")
+    String editPost(Long id, String title, Integer price) {
+        itemService.editItem(id, title, price);
+        return "redirect:/list";
+    }
+
     @GetMapping("/detail/{id}")
     String detail(@PathVariable Long id, Model model) throws Exception {
 
@@ -55,5 +61,17 @@ public class ItemController {
             }
     }
 
+    @GetMapping("/edit/{id}")
+    String edit(@PathVariable Long id,Model model) {
 
+        Optional<Item> result = itemRepository.findById(id);
+        if(result.isPresent()) {
+            model.addAttribute("data", result.get());
+            return "edit.html";
+        } else {
+            return "redirect:/list";
+        }
+
+
+    }
 }
