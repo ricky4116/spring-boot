@@ -5,12 +5,10 @@ import lombok.RequiredArgsConstructor;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -42,14 +40,17 @@ public class ItemController {
     }
 
     @GetMapping("/detail/{id}")
-    String detail(@PathVariable Long id, Model model) {
-        Optional<Item> result = itemRepository.findById(id);
+    String detail(@PathVariable Long id, Model model) throws Exception {
 
-        if (result.isPresent()) {
-            model.addAttribute("data", result.get());
-            return "detail.html";
-        } else {
-            return "redirect:/list";
-        }
+        throw new Exception();
+//        Optional<Item> result = itemRepository.findById(id);
+//            if (result.isPresent()) {
+//                model.addAttribute("data", result.get());
+//                return "detail.html";
+//            } else {
+//                return "redirect:/list";
+//            }
     }
+
+
 }
