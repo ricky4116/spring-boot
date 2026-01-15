@@ -18,7 +18,13 @@
             <h4 th:text="${i.title}"></h4>
         </a>
         <p th:text="${i.price}"></p>
-        <a href="/edit/1">✏️</a>
+        <a th:href="@{'/edit/'+${i.id}}">✏️</a>
+        <span th:onclick="fetch('/item?id=[[${i.id}]]', { method : 'DELETE'})
+                .then(r => r.text())
+                .then(() => {
+                    location.reload();
+                })
+        ">🗑️</span>
     </div>
 </div>
 
