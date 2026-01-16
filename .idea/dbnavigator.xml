@@ -6,7 +6,7 @@
   </component>
   <component name="DBNavigator.Project.DataEditorManager">
     <record-view-column-sorting-type value="BY_INDEX" />
-    <value-preview-text-wrapping value="true" />
+    <value-preview-text-wrapping value="false" />
     <value-preview-pinned value="false" />
   </component>
   <component name="DBNavigator.Project.DatabaseAssistantManager">
@@ -30,7 +30,11 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="27d088f1-9c06-4585-bf6d-f99b3095f2cd">
-      <console name="Connection" type="STANDARD" schema="shop" session="Main"><![CDATA[ALTER TABLE shop.notice MODIFY COLUMN `날짜` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT CURRENT_TIMESTAMP NULL;]]></console>
+      <console name="Connection" type="STANDARD" schema="shop" session="Main"><![CDATA[CREATE TABLE shop.`Member` (
+	username varchar(255) NULL,
+	password varchar(255) NULL,
+	displayName varchar(255) NULL
+)]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
