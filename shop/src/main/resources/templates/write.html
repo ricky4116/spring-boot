@@ -13,8 +13,31 @@
 <form action="/add" method="POST">
     <input name="title">
     <input name="price">
+    <input type="file" onchange="getURL(this)">
+    <input type="hidden" name="imageurl" id="s3-url">
     <button type="submit">전송</button>
 </form>
 
+
+
+<script>
+    async function getURL(e){
+      let file = e.files[0]
+      let name = encodeURIComponent(file.name)
+      let result = await fetch('/presigned-url?filename=' + name)
+      result = await result.text()
+
+      let 결과 = await fetch(result, {
+        method: 'PUT',
+        body: e.files[0]
+      })
+
+      console.log(결과.url.split("?")[0])
+      if (결과.ok) {
+        const finalUrl = 결과.url.split("?")[0];
+        document.getElementById('s3-url').value = finalUrl;
+      }
+    }
+</script>
 </body>
 </html>
