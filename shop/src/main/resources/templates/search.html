@@ -35,19 +35,5 @@
         ">🗑️</span>
     </div>
 </div>
-<div class="pagination" style="text-align: center; margin-top: 30px;">
-
-    <div th:if="${totalPages > 0}">
-        <span th:each="i : ${#numbers.sequence(1, totalPages)}">
-
-            <a th:href="@{'/list/page/' + ${i}}"
-               th:text="${i}"
-               style="display: inline-block; padding: 8px 12px; margin: 0 5px; border: 1px solid #ddd; text-decoration: none; color: black; border-radius: 4px;">
-            </a>
-
-        </span>
-    </div>
-
-</div>
 </body>
 </html>

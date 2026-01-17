@@ -108,4 +108,11 @@ public class ItemController {
         var result = s3Service.createPresignedUrl("test/"+filename);
         return result;
     }
+
+    @PostMapping("/search")
+    String postSearch(Model model, @RequestParam String searchText) {
+        var result = itemRepository.rawQuery1(searchText);
+        model.addAttribute("items", result);
+        return "search.html";
+    }
 }
