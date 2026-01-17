@@ -21,8 +21,9 @@ public class MemberController {
 
     @GetMapping("/register")
     public String register(Authentication auth) {
-        if (auth.isAuthenticated()){
-            return "redirect:/list";
+        if (auth != null && auth.isAuthenticated()) {
+            // 이미 로그인된 사람은 회원가입 페이지에 들어올 필요가 없으므로 홈으로 보냅니다.
+            return "redirect:/";
         }
         return "register.html";
     }

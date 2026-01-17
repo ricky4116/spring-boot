@@ -15,6 +15,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import com.apple.shop.comment.CommentRepository;
+
 @Controller
 @RequiredArgsConstructor
 public class ItemController {
@@ -22,7 +24,7 @@ public class ItemController {
     private final ItemRepository itemRepository;
     private final ItemService itemService;
     private final S3Service s3Service;
-
+    private final CommentRepository commentRepository;
 
 //    @Autowired
 //    public ItemController(ItemRepository itemRepository,ItemService itemService){
@@ -57,6 +59,9 @@ public class ItemController {
 
     @GetMapping("/detail/{id}")
     String detail(@PathVariable Long id, Model model) throws Exception {
+
+        var comments = commentRepository.findByParentId(id);
+        model.addAttribute("comments", comments);
 
         Optional<Item> result = itemRepository.findById(id);
             if (result.isPresent()) {
